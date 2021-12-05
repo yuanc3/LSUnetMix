@@ -53,6 +53,7 @@ visualize_path     = save_path + 'visualize_val/'
 
 def get_config():
     config = ml_collections.ConfigDict()
+    config.embeddings_dropout_rate = 0.1
     config.dropout_rate = 0
     config.patch_sizes = [16,8,4,2]
     config.base_channel = 64 # base channel of U-Net
