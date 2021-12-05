@@ -7,7 +7,7 @@ import Config as config
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import os
-from nets.LSTransNetMix import UCTransNet
+from nets.LSUnetMix import LSUnetMix
 from utils import *
 import cv2
 
@@ -57,22 +57,20 @@ def vis_and_save_heatmap(model, input_img, img_RGB, labs, vis_save_path, dice_pr
 
 if __name__ == '__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-    test_session = config.test_session
     if config.task_name == "GlaS":
         test_num = 80
         model_type = config.model_name
-        # model_path = "./GlaS/"+model_type+"/"+test_session+"/models/best_model-"+model_type+".pth.tar"
-        model_path = "Glas\\UCTransNet\\Test_session_11.25_12h41-all\\models\\best_model-UCTransNet.pth.tar"
+        
+        model_path = "best_model-LSUnetMix.pth.tar"
 
     elif config.task_name == "MoNuSeg":
         test_num = 14
         model_type = config.model_name
-#         model_path = "./MoNuSeg/"+model_type+"/models/best_model-"+model_type+".pth.tar"
-        # model_path = "GlaS/"+model_type+"/models/UCTransNet-MoNuSeg.pth.tar"
-        model_path = "MoNuSeg\\UCTransNet\\Test_session_11.30_19h38-all-8180\\models\\best_model-UCTransNet.pth.tar"
+        
+        model_path = "best_model-LSUnetMix.pth.tar"
 
 
-    # save_path  = config.task_name +'/'+ model_type +'/' + test_session + '/'
+    # save_path  = config.task_name +'/'+ model_type +'/'
     vis_path  = model_path.split("best")[0]+'pic\\'
     # vis_path = "./" + config.task_name + '_visualize_test/'
     if not os.path.exists(vis_path):
@@ -81,18 +79,14 @@ if __name__ == '__main__':
     checkpoint = torch.load(model_path, map_location='cuda')
 
 
-    if model_type == 'UCTransNet':
+    if model_type == 'LSUnetMix':
         config_vit = config.get_CTranS_config()
-        # from nets.UCTransNet import UCTransNet
-        # from nets.otherModels.MedT import MedT
-        # model = MedT(img_size = 224, imgchan = 3, num_classes=1)
-        # model = DeepLabv3(1)
-        model = UCTransNet(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
+        model = LSUnetMix(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
 
 
-    elif model_type == 'UCTransNet_pretrain':
+    elif model_type == 'LSUnetMix_pretrain':
         config_vit = config.get_CTranS_config()
-        model = UCTransNet(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
+        model = LSUnetMix(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
 
 
     else: raise TypeError('Please enter a valid name for the model type')
