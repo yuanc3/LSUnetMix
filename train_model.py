@@ -81,12 +81,12 @@ def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
     logger.info(model_type)
 
     if model_type == 'LSUnetMix':
-        config_ = config.get_CTranS_config()
+        config_ = config.get_config()
 
         model = LSUnetMix(config_,img_size=config.img_size,n_channels=config.n_channels,n_classes=config.n_labels)
 
     elif model_type == 'LSUnetMix_pretrain':
-        config_ = config.get_CTranS_config()
+        config_ = config.get_config()
         
         model = LSUnetMix(config_,n_channels=config.n_channels,n_classes=config.n_labels)
         pretrained_UNet_model_path = "MoNuSeg\\UCTransNet\\Test_session_10.27_14h44\\models\\best_model-UCTransNet.pth.tar"

@@ -51,13 +51,8 @@ visualize_path     = save_path + 'visualize_val/'
 
 
 
-def get_CTranS_config():
+def get_config():
     config = ml_collections.ConfigDict()
-    config.transformer = ml_collections.ConfigDict()
-    config.transformer.num_layers = 1
-    config.expand_ratio           = 4  # MLP channel dimension expand ratio
-    config.embeddings_dropout_rate = 0.1
-    config.attention_dropout_rate = 0.1
     config.dropout_rate = 0
     config.patch_sizes = [16,8,4,2]
     config.base_channel = 64 # base channel of U-Net
