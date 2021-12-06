@@ -7,7 +7,6 @@ import Config as config
 import warnings
 warnings.filterwarnings("ignore")
 
-
 def print_summary(epoch, i, nb_batch, loss, loss_name, batch_time,
                   average_loss, average_time, iou, average_iou,
                   dice, average_dice, acc, average_acc, mode, lr, logger):
@@ -82,11 +81,11 @@ def train_one_epoch(loader, model, criterion, optimizer, writer, epoch, lr_sched
 
         batch_time = time.time() - end
         # train_acc = acc_on_batch(masks,preds)
-        if epoch % config.vis_frequency == 0 and logging_mode is 'Val':
-            vis_path = config.visualize_path+str(epoch)+'/'
-            if not os.path.isdir(vis_path):
-                os.makedirs(vis_path)
-            save_on_batch(images,masks,preds,names,vis_path)
+        # if epoch % config.vis_frequency == 0 and logging_mode is 'Val':
+        #     vis_path = config.visualize_path+str(epoch)+'/'
+        #     if not os.path.isdir(vis_path):
+        #         os.makedirs(vis_path)
+        #     save_on_batch(images,masks,preds,names,vis_path)
         dices.append(train_dice)
 
         time_sum += len(images) * batch_time

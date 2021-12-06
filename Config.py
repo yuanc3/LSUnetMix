@@ -38,13 +38,15 @@ batch_size = 4
 
 model_name = 'LSUnetMix'
 # model_name = 'LSUnetMix_pretrain'
+model_path = "best_model-LSUnetMix.pth.tar" 
+
 
 train_dataset = './datasets/'+ task_name+ '/Train_Folder/'
 val_dataset = './datasets/'+ task_name+ '/Val_Folder/'
 test_dataset = './datasets/'+ task_name+ '/Test_Folder/'
 session_name       = 'Test_session' + '_' + time.strftime('%m.%d_%Hh%M')
 save_path          = task_name +'/'+ model_name +'/' + session_name + '/'
-model_path         = save_path + 'models/'
+save_model_path    = save_path + 'models/'
 tensorboard_folder = save_path + 'tensorboard_logs/'
 logger_path        = save_path + session_name + ".log"
 visualize_path     = save_path + 'visualize_val/'

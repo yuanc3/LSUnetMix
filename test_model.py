@@ -61,13 +61,13 @@ if __name__ == '__main__':
         test_num = 80
         model_type = config.model_name
         
-        model_path = "best_model-LSUnetMix.pth.tar"
+        model_path = config.model_path
 
     elif config.task_name == "MoNuSeg":
         test_num = 14
         model_type = config.model_name
         
-        model_path = "best_model-LSUnetMix.pth.tar"
+        model_path = config.model_path
 
 
     # save_path  = config.task_name +'/'+ model_type +'/'

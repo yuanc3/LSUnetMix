@@ -101,7 +101,6 @@ def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
 
     else: raise TypeError('Please enter a valid name for the model type')
 
-
     model = model.cuda()
     # if torch.cuda.device_count() > 1:
     #     print ("Let's use {0} GPUs!".format(torch.cuda.device_count()))
@@ -155,7 +154,7 @@ def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
                                  'model': model_type,
                                  'state_dict': model.state_dict(),
                                  'val_loss': val_loss,
-                                 'optimizer': optimizer.state_dict()}, config.model_path)
+                                 'optimizer': optimizer.state_dict()}, config.save_model_path)
         else:
             logger.info('\t Mean dice:{:.4f} does not increase, '
                         'the best is still: {:.4f} and {:.4f} in epoch {}'.format(val_dice,max_dice, max_iou, best_epoch))
