@@ -89,7 +89,7 @@ def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
         config_ = config.get_config()
         
         model = LSUnetMix(config_,n_channels=config.n_channels,n_classes=config.n_labels)
-        pretrained_UNet_model_path = "MoNuSeg\\UCTransNet\\Test_session_10.27_14h44\\models\\best_model-UCTransNet.pth.tar"
+        pretrained_UNet_model_path = "best_model-LSUnetMix.pth.tar"
         pretrained_UNet = torch.load(pretrained_UNet_model_path, map_location='cuda')
         pretrained_UNet = pretrained_UNet['state_dict']
         model2_dict = model.state_dict()
