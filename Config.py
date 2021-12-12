@@ -32,6 +32,7 @@ early_stopping_patience = 60
 pretrain = False
 task_name = 'MoNuSeg' # GlaS MoNuSeg
 # task_name = 'GlaS'
+# task_name = 'DRIVE'
 learning_rate = 1e-3
 batch_size = 4
 
@@ -42,7 +43,6 @@ model_path = "best_model-LSUnetMix.pth.tar"
 
 
 train_dataset = './datasets/'+ task_name+ '/Train_Folder/'
-val_dataset = './datasets/'+ task_name+ '/Val_Folder/'
 test_dataset = './datasets/'+ task_name+ '/Test_Folder/'
 session_name       = 'Test_session' + '_' + time.strftime('%m.%d_%Hh%M')
 save_path          = task_name +'/'+ model_name +'/' + session_name + '/'

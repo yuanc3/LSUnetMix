@@ -5,7 +5,7 @@ import os
 import numpy as np
 import random
 from torch.backends import cudnn
-from Load_Dataset import RandomGenerator,ValGenerator,ImageToImage2D
+from Load_Dataset import RandomGenerator,TestGenerator,ImageToImage2D
 from nets.LSUnetMix import LSUnetMix
 
 from torch.utils.data import DataLoader
@@ -59,18 +59,18 @@ def worker_init_fn(worker_id):
 #=================================================================================
 ##################################################################################
 def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
-    # Load train and val data
+    # Load train and test data
     train_tf= transforms.Compose([RandomGenerator(output_size=[config.img_size, config.img_size])])
-    val_tf = ValGenerator(output_size=[config.img_size, config.img_size])
+    test_tf = TestGenerator(output_size=[config.img_size, config.img_size])
     train_dataset = ImageToImage2D(config.train_dataset, train_tf,image_size=config.img_size)
-    val_dataset = ImageToImage2D(config.val_dataset, val_tf,image_size=config.img_size)
+    test_dataset = ImageToImage2D(config.test_dataset, test_tf,image_size=config.img_size)
     train_loader = DataLoader(train_dataset,
                               batch_size=config.batch_size,
                               shuffle=True,
                               worker_init_fn=worker_init_fn,
                               num_workers=2,
                               pin_memory=True)
-    val_loader = DataLoader(val_dataset,
+    test_loader = DataLoader(test_dataset,
                             batch_size=config.batch_size,
                             shuffle=True,
                             worker_init_fn=worker_init_fn,
@@ -122,8 +122,7 @@ def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
 
     max_iou = 0.0
     max_dice = 0.0
-    0.791
-    0.7630
+    
     best_epoch = 1
     for epoch in range(config.epochs):  # loop over the dataset multiple times
         logger.info('\n========= Epoch [{}/{}] ========='.format(epoch + 1, config.epochs + 1))
@@ -136,28 +135,28 @@ def main_loop(batch_size=config.batch_size, model_type='', tensorboard=True):
         logger.info('Validation')
         with torch.no_grad():
             model.eval()
-            val_loss, val_dice, val_iou = train_one_epoch(val_loader, model, criterion,
+            test_loss, test_dice, test_iou = train_one_epoch(test_loader, model, criterion,
                                             optimizer, writer, epoch, lr_scheduler,model_type,logger)
 
         # =============================================================
         #       Save best model
         # =============================================================
-        if val_dice > max_dice:
+        if test_dice > max_dice:
             if epoch+1 > 1:
-                logger.info('\t Saving best model, mean dice increased from: {:.4f} to {:.4f}'.format(max_dice,val_dice))
-                logger.info('\t mean iou: {:.4f}'.format(val_iou))
-                max_dice = val_dice
-                max_iou = val_iou
+                logger.info('\t Saving best model, mean dice increased from: {:.4f} to {:.4f}'.format(max_dice,test_dice))
+                logger.info('\t mean iou: {:.4f}'.format(test_iou))
+                max_dice = test_dice
+                max_iou = test_iou
                 best_epoch = epoch + 1
                 save_checkpoint({'epoch': epoch,
                                  'best_model': True,
                                  'model': model_type,
                                  'state_dict': model.state_dict(),
-                                 'val_loss': val_loss,
+                                 'val_loss': test_loss,
                                  'optimizer': optimizer.state_dict()}, config.save_model_path)
         else:
             logger.info('\t Mean dice:{:.4f} does not increase, '
-                        'the best is still: {:.4f} and {:.4f} in epoch {}'.format(val_dice,max_dice, max_iou, best_epoch))
+                        'the best is still: {:.4f} and {:.4f} in epoch {}'.format(test_dice,max_dice, max_iou, best_epoch))
         early_stopping_count = epoch - best_epoch + 1
         logger.info('\t early_stopping_count: {}/{}'.format(early_stopping_count,config.early_stopping_patience))
 

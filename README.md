@@ -16,28 +16,30 @@ pip install -r requirements.txt
 The original data can be downloaded in following links:
 * MoNuSeG Dataset - [Link (Original)](https://monuseg.grand-challenge.org/Data/)
 * GLAS Dataset - [Link (Original)](https://warwick.ac.uk/fac/cross_fac/tia/data/glascontest)
+* DRIVE Dataset - [Link (Original)](https://drive.grand-challenge.org/)
 
 Then prepare the datasets in the following format for easy use of the code:
 ```angular2html
 ├── datasets
-    ├── GlaS
+    ├── DRIVE
     │   ├── Test_Folder
     │   │   ├── img
     │   │   └── labelcol
-    │   ├── Train_Folder
+    │   └── Train_Folder
+    │       ├── img
+    │       └── labelcol
+    ├── GlaS
+    │   ├── Test_Folder
     │   │   ├── img
     │   │   └── labelcol
-    │   └── Val_Folder
+    │   └── Train_Folder
     │       ├── img
     │       └── labelcol
     └── MoNuSeg
         ├── Test_Folder
         │   ├── img
         │   └── labelcol
-        ├── Train_Folder
-        │   ├── img
-        │   └── labelcol
-        └── Val_Folder
+        └── Train_Folder
             ├── img
             └── labelcol
 ```

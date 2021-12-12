@@ -51,7 +51,7 @@ class RandomGenerator(object):
         sample = {'image': image, 'label': label}
         return sample
 
-class ValGenerator(object):
+class TestGenerator(object):
     def __init__(self, output_size):
         self.output_size = output_size
 
