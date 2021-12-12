@@ -39,11 +39,11 @@ batch_size = 4
 
 model_name = 'LSUnetMix'
 # model_name = 'LSUnetMix_pretrain'
-model_path = "best_model-LSUnetMix.pth.tar" 
+model_path = "DRIVE\\LSUnetMix\\Test_session_12.12_21h50-336\\models\\best_model-LSUnetMix.pth.tar" 
 
 
 train_dataset = './datasets/'+ task_name+ '/Train_Folder/'
-test_dataset = './datasets/'+ task_name+ '/Test_Folder/'
+val_dataset = './datasets/'+ task_name+ '/val_Folder/'
 session_name       = 'Test_session' + '_' + time.strftime('%m.%d_%Hh%M')
 save_path          = task_name +'/'+ model_name +'/' + session_name + '/'
 save_model_path    = save_path + 'models/'

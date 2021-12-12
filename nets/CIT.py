@@ -97,7 +97,7 @@ class Encoder(nn.Module):
 
 
 class CIT(nn.Module):
-    def __init__(self, config, img_size, channel_num=[64, 128, 256, 512], patchSize=[32, 16, 8, 4]):
+    def __init__(self, config, img_size, channel_num=[64, 128, 256, 512], patchSize=[16,8,4,2]):
         super().__init__()
 
         self.patchSize_1 = patchSize[0]

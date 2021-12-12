@@ -59,20 +59,17 @@ if __name__ == '__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     if config.task_name == "GlaS":
         test_num = 80
-        model_type = config.model_name
-        
+        model_type = config.model_name  
         model_path = config.model_path
 
     elif config.task_name == "MoNuSeg":
         test_num = 14
-        model_type = config.model_name
-        
+        model_type = config.model_name 
         model_path = config.model_path
 
     elif config.task_name == "DRIVE":
         test_num = 20
-        model_type = config.model_name
-        
+        model_type = config.model_name   
         model_path = config.model_path
     
     # save_path  = config.task_name +'/'+ model_type +'/'
@@ -86,12 +83,12 @@ if __name__ == '__main__':
 
     if model_type == 'LSUnetMix':
         config_vit = config.get_config()
-        model = LSUnetMix(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
+        model = LSUnetMix(config_vit,img_size=config.img_size,n_channels=config.n_channels,n_classes=config.n_labels)
 
 
     elif model_type == 'LSUnetMix_pretrain':
         config_vit = config.get_config()
-        model = LSUnetMix(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
+        model = LSUnetMix(config_vit,img_size=config.img_size,n_channels=config.n_channels,n_classes=config.n_labels)
 
 
     else: raise TypeError('Please enter a valid name for the model type')
@@ -103,7 +100,7 @@ if __name__ == '__main__':
     model.load_state_dict(checkpoint['state_dict'])
     print('Model loaded !')
     tf_test = ValGenerator(output_size=[config.img_size, config.img_size])
-    test_dataset = ImageToImage2D(config.test_dataset, tf_test,image_size=config.img_size)
+    test_dataset = ImageToImage2D(config.val_dataset, tf_test,image_size=config.img_size)
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
     dice_pred = 0.0
