@@ -69,7 +69,12 @@ if __name__ == '__main__':
         
         model_path = config.model_path
 
-
+    elif config.task_name == "DRIVE":
+        test_num = 20
+        model_type = config.model_name
+        
+        model_path = config.model_path
+    
     # save_path  = config.task_name +'/'+ model_type +'/'
     vis_path  = model_path.split("best")[0]+'pic\\'
     # vis_path = "./" + config.task_name + '_visualize_test/'
@@ -80,12 +85,12 @@ if __name__ == '__main__':
 
 
     if model_type == 'LSUnetMix':
-        config_vit = config.get_CTranS_config()
+        config_vit = config.get_config()
         model = LSUnetMix(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
 
 
     elif model_type == 'LSUnetMix_pretrain':
-        config_vit = config.get_CTranS_config()
+        config_vit = config.get_config()
         model = LSUnetMix(config_vit,n_channels=config.n_channels,n_classes=config.n_labels)
 
 
