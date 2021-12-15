@@ -30,7 +30,7 @@ vis_frequency = 10
 early_stopping_patience = 60
 
 pretrain = False
-task_name = 'MoNuSeg' # GlaS MoNuSeg
+task_name = 'MoNuSeg'
 # task_name = 'GlaS'
 # task_name = 'DRIVE'
 learning_rate = 1e-3
@@ -39,7 +39,7 @@ batch_size = 4
 
 model_name = 'LSUnetMix'
 # model_name = 'LSUnetMix_pretrain'
-model_path = "DRIVE\\LSUnetMix\\Test_session_12.12_21h50-336\\models\\best_model-LSUnetMix.pth.tar" 
+model_path = "best_model-LSUnetMix.pth.tar"
 
 
 train_dataset = './datasets/'+ task_name+ '/Train_Folder/'

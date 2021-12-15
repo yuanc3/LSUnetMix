@@ -65,3 +65,4 @@ We provide the best models in in our paper, and here is the links.
 
 * MoNuSeG model - [Link (Original)](https://drive.google.com/file/d/1AQTqizlzSY0ljFr2oYBUMdaTk6e7lj3N/view?usp=sharing)
 * GLAS model - [Link (Original)](https://drive.google.com/file/d/1YemmVw44lCDNBTYAhOmDx3LimxWIsT6m/view?usp=sharing)
+* GDRIVE model - [Link (Original)](https://drive.google.com/file/d/1rWJp-Y2IRQ6wPTCRVZhCWcmU8U6YZI6V/view?usp=sharing)
