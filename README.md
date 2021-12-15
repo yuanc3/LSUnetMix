@@ -22,21 +22,21 @@ Then prepare the datasets in the following format for easy use of the code:
 ```angular2html
 ├── datasets
     ├── DRIVE
-    │   ├── Test_Folder
+    │   ├── Val_Folder
     │   │   ├── img
     │   │   └── labelcol
     │   └── Train_Folder
     │       ├── img
     │       └── labelcol
     ├── GlaS
-    │   ├── Test_Folder
+    │   ├── Val_Folder
     │   │   ├── img
     │   │   └── labelcol
     │   └── Train_Folder
     │       ├── img
     │       └── labelcol
     └── MoNuSeg
-        ├── Test_Folder
+        ├── Val_Folder
         │   ├── img
         │   └── labelcol
         └── Train_Folder
