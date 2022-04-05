@@ -1,5 +1,5 @@
 # LSUnetMix
-We proposed a LSUnetMix modle which contains 3 modules: CIT (Channel Information Transmission), PE (Prospect Enhancement), and MDC (Multiscale Dilated Convolution).
+We proposed a LSUnetMix modle which contains 3 modules: CIT (Channel Information Transmission), MDC (Multiscale Dilated Convolution), and PE (Prospect Enhancement).
 
 ## Requirements
 
